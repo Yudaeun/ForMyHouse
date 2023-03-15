@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        const endpoint = 'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev';
+        const serviceKey = '5LRNfmj5IdSG7p%2BDFmJQ4LgU0XrCnfK9MWmnvkKFG5clbuWKUkzpOW6RHjhBuxZ52xp07Onw46CeZwO2fezloQ%3D%3D';
+        const pageNo = 1;
+        const numOfRows = 10;
+        const LAWD_CD = '11110'; // 서울특별시 종로구
+        const DEAL_YMD = '202103'; // 거래년월
+
+        const url = `${endpoint}?ServiceKey=${serviceKey}&pageNo=${pageNo}&numOfRows=${numOfRows}&LAWD_CD=${LAWD_CD}&DEAL_YMD=${DEAL_YMD}`;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xhr.responseText, 'text/xml');
+            const items = xmlDoc.getElementsByTagName('item');
+            for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            const dealAmount = item.getElementsByTagName('거래금액')[0].textContent;
+            const buildYear = item.getElementsByTagName('건축년도')[0].textContent;
+            console.log(`거래금액: ${dealAmount}, 건축년도: ${buildYear}`);
+            }
+        }
+        };
+        xhr.send();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

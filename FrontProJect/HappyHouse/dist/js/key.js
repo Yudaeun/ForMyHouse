@@ -1,0 +1,1 @@
+const serviceKey = "5LRNfmj5IdSG7p%2BDFmJQ4LgU0XrCnfK9MWmnvkKFG5clbuWKUkzpOW6RHjhBuxZ52xp07Onw46CeZwO2fezloQ%3D%3D";

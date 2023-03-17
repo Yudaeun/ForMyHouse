@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+                font-family: 'Dongle', sans-serif;
+                font-family: 'Nanum Pen Script', cursive;
+                font-family: 'Sunflower', sans-serif;
+            }
+        body {
+  background: #f6f5f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
+        h2{
+            text-align: center;
+            color:chocolate;
+        }
+        div{
+            text-align: center;
+            border: 2px;
+            border-color: blue;
+        }
+        input{
+            width:400px;
+  height:50px;
+  font-size:20px;
+  
+        }
+        input::placeholder{
+            text-align: center;
+            color:chocolate;
+            font-weight: bold;
+        }
+
+
+    </style>
+    <script>
+        function result(){
+            alert('이메일 주소로 임시 비밀번호를 전송했습니다!');
+        }
+    </script>
+</head>
+<body>
+    <h2 class="title">비밀번호를 찾고자하는 아이디를 입력해주세요.</h2><br><br>
+    <div id="idInput" class="input_row">
+        <input class="inputid" type="text" placeholder="아이디를 입력해주세요" name="userId" maxlength="40" onfocus="this.placeholder=''" onblur="this.placeholder ='아이디를 입력해주세요'">
+
+    </div><br>
+    <button onclick="result()">비밀번호 찾기</button>
+
+</body>
+</html>

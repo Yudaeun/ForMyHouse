@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/login.css">
+  <link href="https://fonts.googleapis.com/css2?family=Dongle&family=Nanum+Pen+Script&family=Sunflower:wght@500;700&display=swap" rel="stylesheet">
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script>
+    Kakao.init('1ac7ab57eec484b1521b245f28789451'); //발급받은 키 중 javascript키를 사용해준다.
+    console.log(Kakao.isInitialized()); // sdk초기화여부판단
+    //카카오로그인
+    function kakaoLogin() {
+      Kakao.Auth.login({
+        success: function(authObj) {
+         
+          //2. 로그인 성공시, API 호출
+          Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(res) {
+              console.log(res);
+              var id = res.id;
+			  scope : 'account_email';  
+        location.href="index.html";            
+        }
+          })
+          console.log(authObj);
+          var token = authObj.access_token;
+          location.href="index.html";
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+      location.href="index.html";
+      }
+    
+    </script>
+</head>
+<body>
+  <h2>Welcome Happy House!</h2>
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form action="#">
+      <h1>회원가입</h1>
+      <span>이름과 이메일, 비밀번호를 입력해주세요.</span>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <button>회원가입</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form action="#">
+      <h1>로그인</h1>
+      <span>이메일아이디와 비밀번호를 입력해주세요.</span>
+      <input type="email" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+      <a href="find.html">비밀번호 찾기</a>
+      
+      <button onclick="location.href='index.html'">로그인</button><br>
+      <button onclick="kakaoLogin();">카카오 계정으로 1초 로그인</button>
+      
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>이미 아이디가 <br> 있으신가요?</h1>
+        <br>
+        <button class="ghost" id="signIn">로그인 하러 가기</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>아직 회원가입을 <br>하지 않으셨나요?</h1>
+        <h3>5초 만에 간편 회원가입!</h3>
+        <button class="ghost" id="signUp">회원가입 하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <script type="text/javascript" src="js/login.js"></script>
+</body>
+
+</html>
